@@ -1,9 +1,10 @@
 use axum::{
-    extract::{State, WebSocketUpgrade},
+    extract::{State, WebSocketUpgrade, ws::WebSocket},
     response::{Html, IntoResponse},
     Json,
 };
 use dashmap::DashMap;
+use futures_util::stream::StreamExt;
 use std::sync::Arc;
 use tokio::sync::broadcast;
 
@@ -57,7 +58,7 @@ pub async fn ws_handler(
     ws: WebSocketUpgrade,
     State(state): State<AppState>,
 ) -> impl IntoResponse {
-    ws.on_upgrade(|socket| async move {
+    ws.on_upgrade(|socket: WebSocket| async move {
         let mut rx = state.tx.subscribe();
         
         let (mut sender, _) = socket.split();
