@@ -24,13 +24,12 @@ async fn main() {
     let serve_dir = ServeDir::new("static");
 
     let app = Router::new()
-        .route("/", get(handlers::index_handler))
         .route("/api/logs", get(handlers::logs_handler))
         .route("/api/logs", post(handlers::add_log_handler))
         .route("/api/stats", get(handlers::stats_handler))
         .route("/ws", get(handlers::ws_handler))
-        // Добавляем фоллбэк для статики: если путь не найден в API, ищем в папке static
-        .nest_service("/", serve_dir)
+        .route("/", get(handlers::index_handler))
+        .fallback_service(serve_dir)
         .with_state(state);
     
     let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
