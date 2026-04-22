@@ -4,7 +4,7 @@ use axum::{
     Json,
 };
 use dashmap::DashMap;
-use futures_util::stream::StreamExt;
+use futures_util::{sink::SinkExt, stream::StreamExt};
 use std::sync::Arc;
 use tokio::sync::broadcast;
 

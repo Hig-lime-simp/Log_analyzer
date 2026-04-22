@@ -10,12 +10,12 @@
     <h1>📋 Real-Time Log Analyzer</h1>
     <div class="container">
         <div class="left-panel">
-            <h3>✏️ Ввод лога</h3>
+            <h3>Ввод лога</h3>
             <textarea id="logInput" placeholder='Примеры:
 [ERROR] Database connection failed
 [WARNING] Disk usage 85%
 User login successful'></textarea>
-            <button id="sendBtn">🚀 Отправить лог</button>
+            <button id="sendBtn"> Отправить лог</button>
             <div class="stats" id="stats">
                 <div class="stat-card total">Загрузка...</div>
             </div>
@@ -102,7 +102,6 @@ User login successful'></textarea>
                 body: JSON.stringify(content)
             });
             const newLog = await res.json();
-            // WebSocket добавит автоматически, но для надежности:
             logs.push(newLog);
             renderTable();
             updateStats();
@@ -115,7 +114,7 @@ User login successful'></textarea>
             
             ws.onmessage = (event) => {
                 const newLog = JSON.parse(event.data);
-                logs.unshift(newLog); // свежие сверху
+                logs.unshift(newLog); 
                 renderTable();
                 updateStats();
             };
@@ -123,7 +122,6 @@ User login successful'></textarea>
             ws.onerror = (error) => console.error('WebSocket error:', error);
         }
 
-        // Filter buttons
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -135,7 +133,6 @@ User login successful'></textarea>
 
         document.getElementById('sendBtn').addEventListener('click', sendLog);
         
-        // Initialize
         loadLogs();
         setupWebSocket();
     </script>
