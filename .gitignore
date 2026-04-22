@@ -1,42 +1,54 @@
 ```
-# Dependencies
+# Build artifacts
+dist/
+build/
 target/
-.cargo/
 
-# Python
+# Dependencies
+node_modules/
+venv/
+.venv/
 __pycache__/
+*.egg-info/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Environment variables
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+htmlcov/
+.coverage
+
+# Python specific
 *.pyc
 *.pyo
 *.pyd
 .Python
-env/
-venv/
-.venv/
-.ENV
-.env
-.env.*
-.env.local
+*.so
 
-# Logs
-*.log
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Temporary files
-*.tmp
-*.temp
-*~
-```
-
-Wait, let me reconsider the input. The modified files are only `.gitignore`, `Cargo.toml`, and `src/handlers.rs` - these are all source/config files. There are no build artifacts, dependencies, or temp files in the changes shown. Following rule #6, I should output nothing.
-
-```rust
-
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
 ```
