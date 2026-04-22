@@ -95,16 +95,13 @@ User login successful'></textarea>
             const input = document.getElementById('logInput');
             const content = input.value.trim();
             if (!content) return;
-            
-            const res = await fetch('/api/logs', {
+
+            await fetch('/api/logs', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(content)
             });
-            const newLog = await res.json();
-            logs.push(newLog);
-            renderTable();
-            updateStats();
+            
             input.value = '';
         }
 
