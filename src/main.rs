@@ -1,0 +1,33 @@
+mod handlers;
+mod models;
+
+use axum::{
+    routing::{get, post},
+    Router,
+};
+use handlers::AppStateInner;
+use std::sync::Arc;
+use tokio::sync::broadcast;
+
+#[tokio::main]
+async fn main() {
+    let (tx, _rx) = broadcast::channel(100);
+    
+    let state = Arc::new(AppStateInner {
+        logs: dashmap::DashMap::new(),
+        next_id: std::sync::atomic::AtomicU64::new(0),
+        tx,
+    });
+    
+    let app = Router::new()
+        .route("/", get(handlers::index_handler))
+        .route("/api/logs", get(handlers::logs_handler))
+        .route("/api/logs", post(handlers::add_log_handler))
+        .route("/api/stats", get(handlers::stats_handler))
+        .route("/ws", get(handlers::ws_handler))
+        .with_state(state);
+    
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
+    println!("Server running on http://localhost:3000");
+    axum::serve(listener, app).await.unwrap();
+}

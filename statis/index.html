@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>📋 Real-Time Log Analyzer</h1>
+    <div class="container">
+        <div class="left-panel">
+            <h3>✏️ Ввод лога</h3>
+            <textarea id="logInput" placeholder='Примеры:
+[ERROR] Database connection failed
+[WARNING] Disk usage 85%
+User login successful'></textarea>
+            <button id="sendBtn">🚀 Отправить лог</button>
+            <div class="stats" id="stats">
+                <div class="stat-card total">Загрузка...</div>
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Все</button>
+                <button class="filter-btn" data-filter="info">INFO</button>
+                <button class="filter-btn" data-filter="warning">WARNING</button>
+                <button class="filter-btn" data-filter="error">ERROR</button>
+            </div>
+            <div style="overflow-x: auto;">
+                <table id="logTable">
+                    <thead>
+                        <tr><th>Время</th><th>Уровень</th><th>Содержание</th></tr>
+                    </thead>
+                    <tbody id="logBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = '';
+        let logs = [];
+        let currentFilter = 'all';
+        let ws = null;
+
+        function formatTime(timestamp) {
+            return new Date(timestamp).toLocaleTimeString('ru-RU', { hour12: false });
+        }
+
+        function getLevelClass(level) {
+            return `level-${level}`;
+        }
+
+        function renderTable() {
+            const filtered = currentFilter === 'all' 
+                ? logs 
+                : logs.filter(log => log.level === currentFilter);
+            
+            const tbody = document.getElementById('logBody');
+            tbody.innerHTML = filtered.map(log => `
+                <tr>
+                    <td>${formatTime(log.timestamp)}</td>
+                    <td class="${getLevelClass(log.level)}">${log.level.toUpperCase()}</td>
+                    <td>${escapeHtml(log.content)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        async function updateStats() {
+            const res = await fetch('/api/stats');
+            const stats = await res.json();
+            document.getElementById('stats').innerHTML = `
+                <div class="stat-card total"><div class="stat-value">${stats.total}</div><div class="stat-label">Всего</div></div>
+                <div class="stat-card info"><div class="stat-value">${stats.info}</div><div class="stat-label">INFO</div></div>
+                <div class="stat-card warning"><div class="stat-value">${stats.warnings}</div><div class="stat-label">WARNING</div></div>
+                <div class="stat-card error"><div class="stat-value">${stats.errors}</div><div class="stat-label">ERROR</div></div>
+            `;
+        }
+
+        async function loadLogs() {
+            const res = await fetch('/api/logs');
+            logs = await res.json();
+            renderTable();
+            updateStats();
+        }
+
+        async function sendLog() {
+            const input = document.getElementById('logInput');
+            const content = input.value.trim();
+            if (!content) return;
+            
+            const res = await fetch('/api/logs', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(content)
+            });
+            const newLog = await res.json();
+            // WebSocket добавит автоматически, но для надежности:
+            logs.push(newLog);
+            renderTable();
+            updateStats();
+            input.value = '';
+        }
+
+        function setupWebSocket() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            ws = new WebSocket(`${protocol}//${window.location.host}/ws`);
+            
+            ws.onmessage = (event) => {
+                const newLog = JSON.parse(event.data);
+                logs.unshift(newLog); // свежие сверху
+                renderTable();
+                updateStats();
+            };
+            
+            ws.onerror = (error) => console.error('WebSocket error:', error);
+        }
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderTable();
+            });
+        });
+
+        document.getElementById('sendBtn').addEventListener('click', sendLog);
+        
+        // Initialize
+        loadLogs();
+        setupWebSocket();
+    </script>
+</body>
+</html>
