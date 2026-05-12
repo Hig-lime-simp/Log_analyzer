@@ -1,0 +1,1 @@
+C:\Users\lime\Documents\Rust\Log_analyzer\target\debug\log-analyzer.exe: C:\Users\lime\Documents\Rust\Log_analyzer\src\handlers.rs C:\Users\lime\Documents\Rust\Log_analyzer\src\main.rs C:\Users\lime\Documents\Rust\Log_analyzer\src\models.rs C:\Users\lime\Documents\Rust\Log_analyzer\static\index.html

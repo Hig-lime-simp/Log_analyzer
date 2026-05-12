@@ -30,9 +30,9 @@ impl LogEntry {
     
     fn detect_level(content: &str) -> LogLevel {
         let lower = content.to_lowercase();
-        if lower.contains("error") || lower.contains("fail") || lower.contains("critical") {
+        if lower.contains("error") {
             LogLevel::Error
-        } else if lower.contains("warning") || lower.contains("warn") {
+        } else if lower.contains("warning") {
             LogLevel::Warning
         } else {
             LogLevel::Info

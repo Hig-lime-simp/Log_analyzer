@@ -20,7 +20,6 @@ async fn main() {
         tx,
     });
     
-    // Создаем сервис для раздачи статических файлов из папки "static"
     let serve_dir = ServeDir::new("static");
 
     let app = Router::new()

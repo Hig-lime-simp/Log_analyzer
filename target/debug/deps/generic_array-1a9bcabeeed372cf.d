@@ -1,0 +1,11 @@
+C:\Users\lime\Documents\Rust\Log_analyzer\target\debug\deps\generic_array-1a9bcabeeed372cf.d: C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\lib.rs C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\hex.rs C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\impls.rs C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\arr.rs C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\functional.rs C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\iter.rs C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\sequence.rs
+
+C:\Users\lime\Documents\Rust\Log_analyzer\target\debug\deps\libgeneric_array-1a9bcabeeed372cf.rmeta: C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\lib.rs C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\hex.rs C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\impls.rs C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\arr.rs C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\functional.rs C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\iter.rs C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\sequence.rs
+
+C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\lib.rs:
+C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\hex.rs:
+C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\impls.rs:
+C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\arr.rs:
+C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\functional.rs:
+C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\iter.rs:
+C:\Users\lime\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\generic-array-0.14.7\src\sequence.rs:

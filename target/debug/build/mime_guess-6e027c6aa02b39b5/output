@@ -1,0 +1,1 @@
+cargo:rustc-env=MIME_TYPES_GENERATED_PATH=C:\Users\lime\Documents\Rust\Log_analyzer\target\debug\build\mime_guess-6e027c6aa02b39b5\out\mime_types_generated.rs
