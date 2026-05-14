@@ -4,11 +4,40 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-axum = { version = "0.7", features = ["ws"] }
+# TUI framework
+ratatui = "0.24"
+crossterm = "0.27"
+
+# Async runtime
 tokio = { version = "1", features = ["full"] }
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
-dashmap = "5"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Thread-safe data structures
+dashmap = "5.5"
+
+# File watching
+notify = "6.1"
+
+# Time handling
 chrono = { version = "0.4", features = ["serde"] }
-tower-http = { version = "0.5", features = ["fs", "cors"] }
-futures-util = "0.3"
+
+# CLI argument parsing
+clap = { version = "4.4", features = ["derive"] }
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Regex for log parsing
+regex = "1.10"
+
+# UUID for sessions
+uuid = { version = "1.6", features = ["v4", "serde"] }

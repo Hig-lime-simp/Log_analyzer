@@ -1,0 +1,72 @@
+{
+  "rules": [
+    {
+      "id": "rule-001",
+      "name": "Critical Errors",
+      "condition": {
+        "type": "Level",
+        "value": "Error"
+      },
+      "action": {
+        "type": "Warn",
+        "config": {
+          "severity": "high"
+        }
+      },
+      "priority": 1,
+      "enabled": true
+    },
+    {
+      "id": "rule-002",
+      "name": "Authentication Failures",
+      "condition": {
+        "type": "Keyword",
+        "value": "authentication failed"
+      },
+      "action": {
+        "type": "Warn",
+        "config": {
+          "severity": "critical"
+        }
+      },
+      "priority": 2,
+      "enabled": true
+    },
+    {
+      "id": "rule-003",
+      "name": "Database Connection Issues",
+      "condition": {
+        "type": "Keyword",
+        "value": "database"
+      },
+      "action": {
+        "type": "Count"
+      },
+      "priority": 10,
+      "enabled": true
+    },
+    {
+      "id": "rule-004",
+      "name": "Debug Messages",
+      "condition": {
+        "type": "Level",
+        "value": "Debug"
+      },
+      "action": {
+        "type": "Ignore"
+      },
+      "priority": 100,
+      "enabled": false
+    }
+  ],
+  "workers": 4,
+  "time_window_seconds": 60,
+  "error_threshold": 10,
+  "volume_threshold": 2.0,
+  "output": {
+    "console": true,
+    "report_file": null,
+    "report_format": "Text",
+    "realtime": true
+  }
+}
