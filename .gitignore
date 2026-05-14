@@ -1,1 +1,97 @@
-Nothing needs to be added to .gitignore since only a README.md file was added, which is a source/config file and not a build artifact, dependency, or temporary file.
+```rust
+# Compiled and build artifacts
+target/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.out
+
+# Dependencies
+Cargo.lock
+vendor/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Python (if applicable)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage*
+.nox/
+.pytest_cache/
+.mypy_cache/
+.hypothesis/
+
+# Node.js (if applicable)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+node_modules/
+dist/
+build/
+
+# Rust specific
+**/*.rs.bk
+```
+
+Wait, let me reconsider this. The changes only show Rust source files being modified, so I should focus on Rust-specific patterns and not include other language patterns unless they're clearly needed. Since there are no build artifacts or dependency directories in the changes, I should be more conservative.
+
+```rust
+# Compiled and build artifacts
+target/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.out
+
+# Dependencies
+Cargo.lock
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Editors
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.local
+*.env.*
+```
